@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ahmed Abdulrahman | Global Journey & Fitness Ethos</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 30%, #eef2f5, #e0e8ef);
+            color: #1a2e2b;
+            line-height: 1.5;
+            padding: 2rem 1.2rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* modern navigation bar */
+        .navbar {
+            background: #0c2f28;
+            border-radius: 3rem;
+            margin-bottom: 2rem;
+            padding: 0.8rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 20px -8px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            color: #ffdf8c;
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .logo i {
+            color: #f3b33d;
+            margin-right: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #e9f0ec;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn i {
+            font-size: 1rem;
+        }
+
+        .nav-btn.active {
+            background: #e67e22;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:hover:not(.active) {
+            background: #2a5a48;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* main card container (pages) */
+        .main-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+        }
+
+        /* vibrant header reused */
+        .hero-header {
+            background: linear-gradient(115deg, #0c2f28 0%, #1b5e4a 100%);
+            padding: 2rem 2rem;
+            text-align: center;
+        }
+
+        .avatar-icon {
+            width: 110px;
+            height: 110px;
+            background: radial-gradient(circle at 30% 25%, #ffdf8c, #f3b33d);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2b4b3b;
+            border: 4px solid rgba(255, 245, 200, 0.8);
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .badge-location {
+            background: rgba(255, 240, 180, 0.2);
+            backdrop-filter: blur(4px);
+            display: inline-flex;
+            gap: 10px;
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #ffefc0;
+        }
+
+        .content-expanded {
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        /* page visibility */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* home page specific styles (reused from original) */
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: #fefefe;
+            border-radius: 1.6rem;
+            padding: 1.6rem;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9f0ec;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+            border-color: #cde2d8;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            border-left: 5px solid #e67e22;
+            padding-left: 1rem;
+            color: #1e463a;
+        }
+
+        .card-title i {
+            color: #e67e22;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.98rem;
+        }
+
+        .timeline-item {
+            background: #f8fbf9;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #e67e22;
+        }
+
+        .contact-block {
+            background: #f2f7f4;
+            border-radius: 1.2rem;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .fitness-badge {
+            background: white;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2eadf;
+            font-weight: 500;
+        }
+
+        .dynamic-zone {
+            grid-column: span 2;
+            background: linear-gradient(115deg, #fcf8e8, #fff7e6);
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .fact-btn {
+            background: #2c7a5e;
+            border: none;
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 2.5rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #4b6b5e;
+            border-top: 1px solid #dce9e2;
+        }
+
+        /* SERVICES / PRODUCTION PAGE STYLES (Video editor + game) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fefaf5;
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            border: 1px solid #e7dfd0;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+        }
+
+        .service-card h3 {
+            font-size: 1.7rem;
+            color: #1e463a;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e67e22;
+            display: inline-block;
+        }
+
+        .video-editor-area {
+            background: #1e1e2a;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .editor-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 15px 0;
+            align-items: center;
+        }
+
+        .editor-controls button, .editor-controls input {
+            background: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: monospace;
+        }
+
+        .editor-controls button {
+            background: #e67e22;
+            color: white;
+        }
+
+        .editor-preview {
+            background: #2a2a36;
+            padding: 20px;
+            border-radius: 1rem;
+            color: #ddd;
+            font-family: monospace;
+            font-size: 1rem;
+            word-break: break-word;
+            min-height: 140px;
+        }
+
+        .game-area {
+            background: #eef3e8;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .guess-number {
+            background: #2c3e2b;
+            padding: 1rem;
+            border-radius: 1rem;
+            color: white;
+            margin: 1rem 0;
+        }
+
+        .guess-input {
+            padding: 10px;
+            border-radius: 30px;
+            border: none;
+            width: 120px;
+            text-align: center;
+        }
+
+        .game-message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 880px) {
+            .two-columns, .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .dynamic-zone {
+                grid-column: span 1;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+                border-radius: 2rem;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- enhanced NAVBAR -->
+    <div class="navbar">
+        <div class="logo"><i class="fas fa-dumbbell"></i> Ahmed.A</div>
+        <div class="nav-links">
+            <button class="nav-btn active" data-page="home"><i class="fas fa-home"></i> Home</button>
+            <button class="nav-btn" data-page="about"><i class="fas fa-user-astronaut"></i> About</button>
+            <button class="nav-btn" data-page="contact"><i class="fas fa-envelope"></i> Contact</button>
+            <button class="nav-btn" data-page="services"><i class="fas fa-cogs"></i> Productions</button>
+        </div>
+    </div>
+
+    <div class="main-card">
+        <div class="hero-header">
+            <div class="avatar-icon">
+                <span>🏋️‍♂️🌍</span>
+            </div>
+            <h1>Ahmed Abdulrahman</h1>
+            <div class="badge-location">
+                <i class="fas fa-map-pin"></i> KSA → Ethiopia | <i class="fas fa-dumbbell"></i> Fitness Architect | Grade 11
+            </div>
+        </div>
+
+        <div class="content-expanded">
+            <!-- ========================= HOME PAGE ========================= -->
+            <div id="home-page" class="page active-page">
+                <div class="two-columns">
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-route"></i> My Cross‑cultural Journey</div>
+                        <ul class="info-list">
+                            <li><strong>🇸🇦 Born in KSA:</strong> <span>First 10 years of schooling & early life</span></li>
+                            <li><strong>✈️ Move to Ethiopia:</strong> <span>Continued education from 5th grade onward</span></li>
+                            <li><strong>📍 Grades 7–8:</strong> <span><i class="fas fa-school"></i> Burka Bori — foundational years</span></li>
+                            <li><strong>📍 Grades 9–11:</strong> <span><i class="fas fa-graduation-cap"></i> Bori — currently thriving as Grade 11</span></li>
+                            <li><strong>👨‍👩‍👧‍👦 Family:</strong> <span>Parents, two siblings (5 members total)</span></li>
+                            <li><strong>🎂 Age:</strong> <span>18 years old — determined & disciplined.</span></li>
+                        </ul>
+                        <div class="journey-highlight" style="background:#eef3f0; border-radius:1rem; padding:1rem; margin-top:0.5rem;">
+                            <i class="fas fa-chalkboard-user"></i> <strong>Education recap:</strong> 10y in Saudi → 5th grade onward Ethiopia → Grade 7-8 (Burka Bori) → Grade 9-11 (Bori).
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-heartbeat"></i> Fitness Ethos & Contact</div>
+                        <p style="margin-bottom: 12px;">🏆 <strong>Physical exercise is my anchor</strong> — fuels mind & studies.</p>
+                        <div class="fitness-grid" style="display:flex; flex-wrap:wrap; gap:0.7rem;">
+                            <span class="fitness-badge"><i class="fas fa-running"></i> 5x/week strength</span>
+                            <span class="fitness-badge"><i class="fas fa-swimmer"></i> Calisthenics focus</span>
+                            <span class="fitness-badge"><i class="fas fa-apple-alt"></i> Clean nutrition</span>
+                            <span class="fitness-badge"><i class="fas fa-brain"></i> Mind-muscle</span>
+                        </div>
+                        <div class="quote-area" style="margin-top:1rem; background:#fff6ea; padding:1rem; border-radius:1.4rem;">
+                            <i class="fas fa-quote-left"></i> “Whether in Burka Bori or Bori, I carry my workout mat and discipline.”
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-landmark"></i> Deep Roots: Burka Bori → Bori</div>
+                        <div class="timeline-item"><div class="timeline-year">📘 Grades 7–8 | Burka Bori</div><p>Adaptability & first fitness spark: local parks became gym.</p></div>
+                        <div class="timeline-item"><div class="timeline-year">📖 Grades 9–11 | Bori (Current)</div><p>Balancing textbooks with pull-ups, leading small workout groups after school.</p></div>
+                        <div class="timeline-item"><div class="timeline-year">🌍 Cultural fusion</div><p>Arabic & English fluent, embracing Ethiopian identity.</p></div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-bullseye"></i> Milestones & Lifestyle</div>
+                        <ul class="info-list">
+                            <li><strong>🏅 Fitness goal 2026:</strong> Muscle-ups & 12 pull-ups</li>
+                            <li><strong>📚 Academic aim:</strong> Excel in Grade 11 science</li>
+                            <li><strong>🧘 Daily ritual:</strong> 5:30 AM wake-up, mobility, school, workout</li>
+                            <li><strong>🌟 Role models:</strong> Goggins, Kipchoge</li>
+                            <li><strong>💡 Fun fact:</strong> First 5km in Burka Bori: 26 min!</li>
+                        </ul>
+                    </div>
+                    <div class="dynamic-zone" id="dynamicFactZone">
+                        <div class="fact-text"><i class="fas fa-dice-d6" style="margin-right:10px; color:#e67e22;"></i><span id="randomFactMessage">💥 Did you know? Burka Bori's local running trails boosted stamina 30%!</span></div>
+                        <button class="fact-btn" id="randomizeFactBtn"><i class="fas fa-sync-alt"></i> New Insight</button>
+                    </div>
+                </div>
+                <footer><i class="fas fa-dumbbell"></i> Ahmed Abdulrahman — Born in KSA, shaped in Burka Bori & Bori. Grade 11 | 18 yrs | Fitness advocate <i class="fas fa-heart" style="color:#e67e22;"></i></footer>
+            </div>
+
+            <!-- ========================= ABOUT PAGE (extended journey) ========================= -->
+            <div id="about-page" class="page">
+                <div class="two-columns">
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-globe-africa"></i> My Ethos & Vision</div>
+                        <p style="margin-bottom: 1rem;">I believe that movement is medicine. Growing up between two nations and studying in Burka Bori (grades 7-8) and now Bori (grades 9-11) shaped my worldview. Fitness became the common language that bridges my Saudi and Ethiopian roots.</p>
+                        <p>Every morning at 5:30 AM, I train before school — rain or shine. This discipline helped me lead small workout groups in Bori, where I teach calisthenics basics to classmates. I want to inspire young people in Ethiopia to embrace strength training and healthy routines, showing that you don’t need a fancy gym — just willpower and consistency.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-chart-line"></i> Personal Bests & Habits</div>
+                        <ul class="info-list">
+                            <li><strong>🏋️ Max pull-ups:</strong> 12 reps (strict)</li>
+                            <li><strong>🏃 1-mile time:</strong> 5:58 minutes</li>
+                            <li><strong>📖 Study streak:</strong> 150+ days of active revision</li>
+                            <li><strong>🍲 Favorite meal:</strong> Injera with lean chicken & gomen</li>
+                            <li><strong>🎯 2026 goal:</strong> Run a 10K race in Bori community event</li>
+                        </ul>
+                        <div class="quote-area" style="margin-top:1rem;">“From the streets of Burka Bori to classrooms in Bori, I've learned effort transcends location.”</div>
+                    </div>
+                    <div class="info-card" style="grid-column: span 2;">
+                        <div class="card-title"><i class="fas fa-history"></i> Timeline of Growth</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;">
+                            <div><strong>🇸🇦 2006-2016</strong><br>KSA childhood & school</div>
+                            <div><strong>🇪🇹 2016-2020</strong><br>Adaptation & 5th-6th grade</div>
+                            <div><strong>🏫 2021-2022</strong><br>Burka Bori (7-8) → fitness awakening</div>
+                            <div><strong>📚 2023-Present</strong><br>Bori (9,10,11) → leading fitness culture</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================= CONTACT PAGE ========================= -->
+            <div id="contact-page" class="page">
+                <div class="two-columns">
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-address-card"></i> Get in Touch</div>
+                        <div class="contact-block"><i class="fas fa-phone-alt"></i><div><strong>Phone:</strong> <a href="tel:+251912234567">+251 912 234567</a> (Ethiopia)</div></div>
+                        <div class="contact-block"><i class="fas fa-envelope"></i><div><strong>Email:</strong> <a href="mailto:ahmedabdurahman14@gmail.com">ahmedabdurahman14@gmail.com</a></div></div>
+                        <div class="contact-block"><i class="fas fa-map-marker-alt"></i><div><strong>Current city:</strong> Bori, Ethiopia (studying & training)</div></div>
+                        <div class="contact-block"><i class="fab fa-instagram"></i><div><strong>IG:</strong> @ahmed.fitness_eth (coming soon)</div></div>
+                    </div>
+                    <div class="info-card">
+                        <div class="card-title"><i class="fas fa-comments"></i> Collaboration & Coaching</div>
+                        <p>I’m open to collaboration with fitness enthusiasts, student mentorship, or even sharing workout plans. Whether you're in Burka Bori, Bori or anywhere else, drop a message. Let's grow stronger together.</p>
+                        <div style="background:#e9f0ec; border-radius:1rem; padding:1rem; margin-top:1rem;">
+                            <i class="fas fa-clock"></i> Response within 24h — I’ll reply from my study breaks!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================= SERVICES / PRODUCTION PAGE ========================= -->
+            <div id="services-page" class="page">
+                <div class="services-grid">
+                    <!-- VIDEO EDITOR SIMULATOR (fun production tool) -->
+                    <div class="service-card">
+                        <h3><i class="fas fa-video"></i> Video Editor Studio</h3>
+                        <p>Trim & preview your message: simulate a quick edit tool.</p>
+                        <div class="video-editor-area">
+                            <div class="editor-controls">
+                                <input type="text" id="videoTextInput" placeholder="Type your text here..." value="My fitness journey 💪">
+                                <button id="applyTextBtn"><i class="fas fa-cut"></i> Render Preview</button>
+                                <button id="resetPreviewBtn"><i class="fas fa-undo-alt"></i> Reset</button>
+                            </div>
+                            <div class="editor-preview" id="videoPreview">
+                                🎬 [Video Draft] <br> "My fitness journey 💪" <br> — Ahmed's edit (Burka Bori clips)
+                            </div>
+                            <p style="font-size:0.8rem; margin-top:10px;"><i class="fas fa-info-circle"></i> Simulated video editor: you can edit text and see live preview. Real production soon!</p>
+                        </div>
+                    </div>
+
+                    <!-- PLAYING GAME: GUESS THE NUMBER (interactive) -->
+                    <div class="service-card">
+                        <h3><i class="fas fa-gamepad"></i> Play: Number Riddle</h3>
+                        <p>Guess the secret number (1-20) — beat the high score!</p>
+                        <div class="game-area">
+                            <div class="guess-number">
+                                <p>🤔 I'm thinking of a number between 1 and 20.</p>
+                                <input type="number" id="guessInput" class="guess-input" placeholder="Your guess">
+                                <button id="guessBtn" style="background:#e67e22; color:white; border:none; border-radius:30px; padding:8px 18px; margin-left:8px;">Guess</button>
+                                <button id="newGameBtn" style="background:#2c7a5e; color:white; border:none; border-radius:30px; padding:8px 18px; margin-left:8px;">New Game</button>
+                                <div class="game-message" id="gameMessage">✨ Start guessing!</div>
+                                <div><strong>Attempts:</strong> <span id="attemptCount">0</span></div>
+                            </div>
+                        </div>
+                        <p style="margin-top:12px;"><i class="fas fa-trophy"></i> Challenge friends & train your focus — just like reps in the gym!</p>
+                    </div>
+                </div>
+                <div class="info-card" style="margin-top: 2rem;">
+                    <div class="card-title"><i class="fas fa-microphone-alt"></i> Creator's note</div>
+                    <p>These production tools (video editor simulator + game) showcase my creative side. I'm passionate about blending fitness, tech, and media. Soon, I'll release real workout edit tutorials and interactive training apps!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ---------- PAGE NAVIGATION ----------
+    const pages = {
+        home: document.getElementById('home-page'),
+        about: document.getElementById('about-page'),
+        contact: document.getElementById('contact-page'),
+        services: document.getElementById('services-page')
+    };
+    const navBtns = document.querySelectorAll('.nav-btn');
+    
+    function switchPage(pageId) {
+        Object.keys(pages).forEach(id => {
+            pages[id].classList.remove('active-page');
+        });
+        pages[pageId].classList.add('active-page');
+        navBtns.forEach(btn => {
+            if(btn.getAttribute('data-page') === pageId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const page = btn.getAttribute('data-page');
+            if(page === 'home') switchPage('home');
+            else if(page === 'about') switchPage('about');
+            else if(page === 'contact') switchPage('contact');
+            else if(page === 'services') switchPage('services');
+        });
+    });
+    
+    // ---------- RANDOM FACTS (same rich data) ----------
+    const richFacts = [
+        "🏃‍♂️ While in Burka Bori (grades 7-8), Ahmed used local parks as gym.",
+        "📚 In Bori, Ahmed leads a small 'fitness & focus' group every Thursday.",
+        "💪 From grade 9 to 11 in Bori, pull-ups increased from 3 to 12 reps.",
+        "🌍 Moving from Saudi → Ethiopia → Burka Bori → Bori built adaptability.",
+        "🥇 Ahmed's 2km record: 7m 20s set near Bori school.",
+        "🎯 Burka Bori years taught that discipline in small things leads to big wins.",
+        "🏋️ 'Burka Bori special' workout: 100 squats, 50 push-ups, 20 pull-ups.",
+        "🧠 Revises biology while doing planks — active recall.",
+        "📞 Ahmed's number 0912234567 is his emergency contact for meetups.",
+        "⭐ Ahmed cooks scrambled eggs with Ethiopian spices post-workout.",
+        "🔥 Burka Bori hill sprints built his engine.",
+        "💧 Drinks 3L water daily during sunny afternoons.",
+        "📧 Answers every email within 24h."
+    ];
+    const randomSpan = document.getElementById('randomFactMessage');
+    const randomBtn = document.getElementById('randomizeFactBtn');
+    if(randomBtn) {
+        function setNewRandomFact() {
+            const randomIndex = Math.floor(Math.random() * richFacts.length);
+            randomSpan.innerHTML = richFacts[randomIndex];
+            const zone = document.getElementById('dynamicFactZone');
+            if(zone) {
+                zone.style.backgroundColor = "#fff9e8";
+                setTimeout(() => { if(zone) zone.style.backgroundColor = "#fcf8e8"; }, 180);
+            }
+        }
+        setNewRandomFact();
+        randomBtn.addEventListener('click', setNewRandomFact);
+    }
+    
+    // Video editor simulator logic
+    const videoInput = document.getElementById('videoTextInput');
+    const applyBtn = document.getElementById('applyTextBtn');
+    const resetBtn = document.getElementById('resetPreviewBtn');
+    const previewDiv = document.getElementById('videoPreview');
+    if(applyBtn && previewDiv) {
+        applyBtn.addEventListener('click', () => {
+            let userText = videoInput.value.trim();
+            if(userText === "") userText = "Awesome content!";
+            previewDiv.innerHTML = `🎬 [Video Draft] <br> "${userText}" <br> — Ahmed's edit (Burka Bori highlights) 🎥✨`;
+        });
+        resetBtn.addEventListener('click', () => {
+            videoInput.value = "My fitness journey 💪";
+            previewDiv.innerHTML = `🎬 [Video Draft] <br> "My fitness journey 💪" <br> — Ahmed's edit (Burka Bori clips)`;
+        });
+    }
+    
+    // Guess the number game
+    let secretNumber = Math.floor(Math.random() * 20) + 1;
+    let attempts = 0;
+    const guessInput = document.getElementById('guessInput');
+    const guessBtn = document.getElementById('guessBtn');
+    const newGameBtn = document.getElementById('newGameBtn');
+    const gameMessage = document.getElementById('gameMessage');
+    const attemptSpan = document.getElementById('attemptCount');
+    
+    function updateGameUI(message, isError = false) {
+        gameMessage.innerHTML = message;
+        gameMessage.style.color = isError ? "#e67e22" : "#1e463a";
+    }
+    
+    function newGame() {
+        secretNumber = Math.floor(Math.random() * 20) + 1;
+        attempts = 0;
+        attemptSpan.innerText = attempts;
+        updateGameUI("🔄 New game! Guess a number between 1-20.", false);
+        guessInput.value = '';
+        guessInput.focus();
+    }
+    
+    if(guessBtn) {
+        guessBtn.addEventListener('click', () => {
+            const rawValue = guessInput.value;
+            if(rawValue === "") {
+                updateGameUI("⚠️ Enter a number first!", true);
+                return;
+            }
+            const guess = Number(rawValue);
+            if(isNaN(guess) || guess < 1 || guess > 20) {
+                updateGameUI("🔢 Please enter a valid number 1-20.", true);
+                return;
+            }
+            attempts++;
+            attemptSpan.innerText = attempts;
+            if(guess === secretNumber) {
+                updateGameUI(`🎉 CORRECT! You nailed it in ${attempts} attempts! Amazing focus! 🎉`, false);
+                setTimeout(() => newGame(), 2500);
+            } else if(guess < secretNumber) {
+                updateGameUI(`📈 Too low! Try a higher number. (Attempts: ${attempts})`, false);
+            } else {
+                updateGameUI(`📉 Too high! Aim lower. (Attempts: ${attempts})`, false);
+            }
+            guessInput.value = '';
+        });
+        newGameBtn.addEventListener('click', () => {
+            newGame();
+        });
+    }
+    
+    // subtle contact hover effects
+    const contactBlocks = document.querySelectorAll('.contact-block');
+    contactBlocks.forEach(block => {
+        block.addEventListener('mouseenter', () => { block.style.backgroundColor = "#e8f1ec"; block.style.transform = "translateX(6px)"; block.style.transition = "0.2s"; });
+        block.addEventListener('mouseleave', () => { block.style.backgroundColor = "#f2f7f4"; block.style.transform = "translateX(0)"; });
+    });
+    
+    console.log("✅ Enhanced website with navbar, video editor simulator & game — Ahmed's full experience loaded!");
+</script>
+</body>
+</html>
